@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[ubuntu-openvpn]]></title>
+    <url>%2F2018%2F03%2F14%2Fubuntu-openvpn%2F</url>
+    <content type="text"><![CDATA[First, install the OpenVPN Network Manager plugin: sudo apt-get install network-manager-openvpn Open Network Manager, click “Add” and from the opened window select “Import a saved VPN configuration…” under “Choose a Connection Type”. Navigate to your .ovpn file (~jrg/Documents/vpn-config.ovpn). If it doesn’t automatically find your certificates/keys (the paths of which are found in the .ovpn file), you can select them here, or make any other small changes. One other thing that may save you some headache down the road is to click IPv4 Settings, then change the method to “Automatic (VPN) Addresses Only”. When kept at the default, this will cause ALL internet traffic to go over the VPN, regardless of your .ovpn settings. Here you can also set the DNS server and search domains to use while connected.Must be set DNS server!! transport from https://askubuntu.com/questions/187511/how-can-i-use-a-ovpn-file-with-network-manager]]></content>
+      <categories>
+        <category>internet</category>
+      </categories>
+      <tags>
+        <tag>transport</tag>
+        <tag>internet</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hexo迁移重装]]></title>
     <url>%2F2018%2F03%2F13%2Fhexo%E8%BF%81%E7%A7%BB%E9%87%8D%E8%A3%85%2F</url>
     <content type="text"><![CDATA[Hexo属于静态博客，不像WordPress等具有后台系统，可以在任意平台直接使用。而Hexo此类没有统一的后台管理，在换了系统，或者换了电脑，都需要重新安装一下，包括一些配置，如果手动复制迁移，很容易产生错误，因为很多东西不支持直接复制。因此下面记录自己的迁移方式，还是很简单的。 我们一般需要备份或者需要恢复的一般有三部分: source文件夹内的博客原文，以及一些自己新建的页面，比如about页面 themes文件夹下的主题 配置文件: _config.yml 其余部分，每次hexo init都一样，我们没有必要备份。 备份主要方式就是使用一些在线仓库存储。如github, coding(提供私人仓库)。 主题首先是对主题的迁移。我们一般选定了某个主题，一般都会做一点自定义的改变，比如某些css等，这时候可以先fork到自己的github，每次做了修改，直接push到自己的repo上，下次迁移的时候，直接clone自己修改的主题即可。 source文件夹&amp;&amp;配置文件 这个涉及到了一些私人配置文件，例如博客源文件，以及如_config.yml内的涉及到帐号等私人配置，这个时候，需要备份到私人云上，国内的coding.net免费提供了私人repo，可以使用。这样我们就只需在博客的根目录建立一个repo即可，然后提交source文件夹以及_config.yml即可。新写了博客的话，也只需要提交push到repo即可，十分方便。 迁移重装在换了机器或者系统的时候，需要重新安装Hexo,安装好node.js和git之后，只需执行一条命令安装: npm install hexo-cli -g 之后新建一个hexo博客: hexo init blog 下面开始恢复备份: 1. 从github上恢复主题到themes文件夹 2. 从私人repo上克隆source文件夹和_config.yml 3. 安装所需的插件:一般有hexo-deploy-git,hexo-generator-feed等等 之后用hexo g 和hexo s 本地测试，没问题的话，直接hexo d发布 本文链接: http://shomy.top/2017/01/27/hexo-migrate-solution/非商业转载请注明作者及出处。商业转载请联系作者本人。]]></content>
@@ -20,8 +32,8 @@
         <category>transport</category>
       </categories>
       <tags>
-        <tag>transport</tag>
         <tag>python</tag>
+        <tag>transport</tag>
       </tags>
   </entry>
   <entry>
