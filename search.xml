@@ -20,8 +20,8 @@
         <category>transport</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>transport</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -38,7 +38,7 @@
   <entry>
     <title><![CDATA[Hello World]]></title>
     <url>%2F2018%2F03%2F03%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. How to setupPls refer to Github + Hexo 系列教材 Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment Reminder duoshuo comments is closed. Recommend to disqus wiki for hexo-theme-next hexo 使用攻略– 分类与标签Plus +++ 在我们编辑文章的时候，直接在categories:项填写属于哪个分类，但如果分类是中文的时候，路径也会包含中文。比如分类我们设置的是： 1categories: 编程 那在生成页面后，分类列表就会出现编程这个选项，他的访问路径是： 1*/categories/编程 如果我们想要把路径名和分类名分别设置，需要怎么办呢？ 打开根目录下的配置文件_config.yml，找到如下位置做更改： 1234567# Category &amp; Tagdefault_category: uncategorizedcategory_map: 编程: programming 生活: life 其他: othertag_map: hexo 后台管理工具–”hexo-admin” 详细资料请参见官网 安装 npm install –save hexo-adminhexo serveropen http://localhost:4000/admin/ 使用 先在setting界面设置好账号密码，然后将其拷贝到_config.yml即可。 hexo 插件安装与卸载 hexo安装xxx插件 npm install xxx –save hexo卸载xxx插件 npm uninstall xxx]]></content>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. How to setupPls refer to Github + Hexo 系列教材 Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment Reminder duoshuo comments is closed. Recommend to disqus wiki for hexo-theme-next hexo 使用攻略– 分类与标签Plus +++ 在我们编辑文章的时候，直接在categories:项填写属于哪个分类，但如果分类是中文的时候，路径也会包含中文。比如分类我们设置的是： 1categories: 编程 那在生成页面后，分类列表就会出现编程这个选项，他的访问路径是： 1*/categories/编程 如果我们想要把路径名和分类名分别设置，需要怎么办呢？ 打开根目录下的配置文件_config.yml，找到如下位置做更改： 1234567# Category &amp; Tagdefault_category: uncategorizedcategory_map: 编程: programming 生活: life 其他: othertag_map: hexo 后台管理工具–”hexo-admin” 详细资料请参见官网 安装 npm install –save hexo-adminhexo serveropen http://localhost:4000/admin/ 使用 先在setting界面设置好账号密码，然后将其拷贝到_config.yml即可。 hexo 插件安装与卸载 hexo安装xxx插件 npm install xxx –save hexo卸载xxx插件 npm uninstall xxx 测试github ssh -T git@github.com]]></content>
       <categories>
         <category>internet</category>
       </categories>
