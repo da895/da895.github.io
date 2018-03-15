@@ -4,6 +4,13 @@
     <title><![CDATA[Shell总结(整理)]]></title>
     <url>%2F2018%2F03%2F15%2FShell%E6%80%BB%E7%BB%93-%E6%95%B4%E7%90%86%2F</url>
     <content type="text"><![CDATA[简介Shell各方面的编程内容总结下来并不断更新，以便以后使用时查询。 详解Shell输出不换行 实现类echo的简单硬输出，不自动加换行符。 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980#将脚本接收的参数作为一个串($@或$*)处理,并去掉尾部可能存在的换行符(\n） #!/bin/bash echo -n &quot;$*&quot; #方法一：-n参数,输出脚本参数,强制不换行 printf &quot;%s&quot; &quot;$*&quot; #方法二：格式化输出命令printf,格式串无换行 echo &quot;$*&quot; | tr -d &apos;\n&apos; #方法三：转换/删除命令tr,-d删除字符集中的字符 echo &quot;$*&quot; | awk &apos;&#123;printf(&quot;%s&quot;, $0)&#125;&apos; #方法四：模式-命令指令awk ``` ### 创建shell脚本库 创建shell脚本库library.sh（里面仅包括各种自定义的函数封装，因非函数引入时会执行）。在其他的脚本中需要使用库中函数时加入语句source ./library.sh，其中./library.sh是库的相对路径。并且source的缩写是&quot;.&quot;，因此等价. ./library.sh。然后就可以按正常方式调用库中的函数了。 ### shell特殊变量 $0 ：当前脚本的文件名 $num ：num为从1开始的数字，$1是第一个参数，$2是第二个参数，$&#123;10&#125;是第十个参数 $# ：传入脚本的参数的个数 $* ：所有的位置参数(作为单个字符串) $@ ：所有的位置参数(每个都作为独立的字符串)。 $? ：当前shell进程中，上一个命令的返回值，如果上一个命令成功执行则$?的值为0，否则为其他非零值，常用做if语句条件 $$ ：当前shell进程的pid $! ：后台运行的最后一个进程的pid $- ：显示shell使用的当前选项 $_ ：之前命令的最后一个参数 ### svn提交代码 `$svn st | grep &apos;^[AMD]&apos; | cut -c 9- | xargs svn ci -m &quot;commit&quot;` ### 递归清除.SVN文件 `find . -name &quot;.svn&quot; | xargs rm -rf ` ### Shell符号&lt;&lt;&lt; (Here Document) [Here Document](http://www.tldp.org/LDP/abs/html/x17837.html) 是在Linux Shell 中的一种特殊的重定向方式，它的基本的形式如下 ``` cmd &lt;&lt; delimiter Here Document Contentdelimiter``` 三个小于号的语法：command [args] &lt;&lt;&lt;[&quot;]$word[&quot;]；$word会展开并作为command的stdin。 例如： echo &quot;abc123&quot; | cracklib-check等价于cracklib-check &lt;&lt;&lt; &quot;abc123&quot; echo &quot;abc123&quot; | passwd root --stdin等价于passwd root &lt;&lt;&lt; &quot;abc123&quot; 注意事项： ``` EOF只是一个标识而已,可以替换成任意的合法字符(约定大于配置); 作为结尾的delimiter一定要顶格写,前面不能有任何字符; 作为结尾的delimiter后面也不能有任何的字符(包括空格!!!); 作为起始的delimiter前后的空格会被省略掉; ``` ### Shell比较判断 ``` [ -a FILE ] 如果 FILE 存在则为真。 [ -b FILE ] 如果 FILE 存在且是一个块特殊文件则为真。 [ -c FILE ] 如果 FILE 存在且是一个字特殊文件则为真。 [ -d FILE ] 如果 FILE 存在且是一个目录则为真。 [ -e FILE ] 如果 FILE 存在则为真。 [ -f FILE ] 如果 FILE 存在且是一个普通文件则为真。 [ -g FILE ] 如果 FILE 存在且已经设置了SGID则为真。 [ -h FILE ] 如果 FILE 存在且是一个符号连接则为真。 [ -k FILE ] 如果 FILE 存在且已经设置了粘制位则为真。 [ -p FILE ] 如果 FILE 存在且是一个名字管道(F如果O)则为真。 [ -r FILE ] 如果 FILE 存在且是可读的则为真。 [ -s FILE ] 如果 FILE 存在且大小不为0则为真。 [ -t FD ] 如果文件描述符 FD 打开且指向一个终端则为真。 [ -u FILE ] 如果 FILE 存在且设置了SUID (set user ID)则为真。 [ -w FILE ] 如果 FILE 如果 FILE 存在且是可写的则为真。 [ -x FILE ] 如果 FILE 存在且是可执行的则为真。 [ -O FILE ] 如果 FILE 存在且属有效用户ID则为真。 [ -G FILE ] 如果 FILE 存在且属有效用户组则为真。 [ -L FILE ] 如果 FILE 存在且是一个符号连接则为真。 [ -N FILE ] 如果 FILE 存在 and has been mod如果ied since it was last read则为真。 [ -S FILE ] 如果 FILE 存在且是一个套接字则为真。 [ FILE1 -nt FILE2 ] 如果 FILE1 has been changed more recently than FILE2, or 如果 FILE1 exists and FILE2 does not则为真。 [ FILE1 -ot FILE2 ] 如果 FILE1 比 FILE2 要老, 或者 FILE2 存在且 FILE1 不存在则为真。 [ FILE1 -ef FILE2 ] 如果 FILE1 和 FILE2 指向相同的设备和节点号则为真。 [ -o OPTIONNAME ] 如果 shell选项 “OPTIONNAME” 开启则为真。 [ -z STRING ] “STRING” 的长度为零则为真。 [ -n STRING ] or [ STRING ] “STRING” 的长度为非零 non-zero则为真。 [ STRING1 == STRING2 ] 如果2个字符串相同。 “=” may be used instead of “==” for strict POSIX compliance则为真。 [ STRING1 != STRING2 ] 如果字符串不相等则为真。 [ STRING1 &lt; STRING2 ] 如果 “STRING1” sorts before “STRING2” lexicographically in the current locale则为真。 [ STRING1 &gt; STRING2 ] 如果 “STRING1” sorts after “STRING2” lexicographically in the current locale则为真。 [ ARG1 OP ARG2 ] “OP” is one of -eq, -ne, -lt, -le, -gt or -ge. These arithmetic binary operators return true if “ARG1” is equal to, not equal to, less than, less than or equal to, greater than, or greater than or equal to “ARG2”, respectively. “ARG1” and “ARG2” are integers. if [[ $a != 1 &amp;&amp; $a != 2 ]] 如果是&amp;&amp;、||、&lt;和&gt;，必须使用在[[ ]]条件判断结构中，等价与if [ $a -ne 1] &amp;&amp; [ $a != 2 ]或if [ $a -ne 1 -a $a != 2 ] ``` 转载自： http://blog.csdn.net/taiyang1987912/article/details/40372789```]]></content>
+      <categories>
+        <category>transport</category>
+      </categories>
+      <tags>
+        <tag>shell</tag>
+        <tag>transport</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[ubuntu-openvpn]]></title>
@@ -37,8 +44,8 @@
         <category>transport</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>transport</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
