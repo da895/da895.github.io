@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="淡泊明志，宁静致远">
 <meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-14T15:39:32.228Z">
+<meta property="og:updated_time" content="2018-03-15T14:58:22.413Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hello World">
 <meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
@@ -401,9 +401,15 @@
 </li>
 </ul>
 </li>
-<li>测试github  <blockquote>
-<p> ssh -T git@github.com   </p>
+<li><p>测试github  </p>
+<blockquote>
+<p> ssh -T git@github.com  </p>
 </blockquote>
+</li>
+<li><p>解决Hexo置顶问题  </p>
+<pre><code>$ npm uninstall hexo-generator-index --save
+$ npm install hexo-generator-index-pin-top --save
+</code></pre><p> 然后在需要置顶的文章的Front-matter中加上top: true即可。<br> Github: <a href="https://github.com/netcan/hexo-generator-index-pin-top" target="_blank" rel="noopener">https://github.com/netcan/hexo-generator-index-pin-top</a></p>
 </li>
 </ol>
 
@@ -525,7 +531,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
