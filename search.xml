@@ -1,27 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[System Verilog parameters in generate block]]></title>
+    <url>%2F2018%2F03%2F21%2FSystem-Verilog-parameters-in-generate-block%2F</url>
+    <content type="text"><![CDATA[I’d like to set a parameter based on a parameter which is set when the module is instantiated. I have the following.123456789101112131415161718192021222324252627282930313233module foo #(WORDS = 8);parameter P00 = 33;logic [7:0] tmp;generate case (WORDS) 4: begin : A assign tmp = 8&apos;haa; parameter P00 = 4; end 8: begin : B assign tmp = 8&apos;hbb; parameter P00 = 8; end 16: begin : C assign tmp = 8&apos;hcc; parameter P00 = 16; end default: begin : D assign tmp = 8&apos;hdd; parameter P00 = 8; end endcaseendgenerateinitial begin $display (&quot;WORDS = %d&quot;, WORDS); $display (&quot;tmp = %h&quot;, tmp); $display (&quot;P00 = %d&quot;, P00);endendmodule I expected to get an error for redefining P00 but it compiled and ran and displayed the following instead.123WORDS = 8tmp = bbP00 = 33 If I comment the “parameter P00 = 33” assignment, I get a “Identifier P00 has not been declared yet.” error. It seems that the generate block is being ignored. What is wrong here? For complex derived parameter assignments you can use functions. For example:1234parameter P01 = FUNC01(WORDS,P00);function byte FUNC01(input byte w,p);/* ... */endfunction This is also legal: module foo #(parameter WORDS, P00=FUNC00(WORDS)); Reprint: https://stackoverflow.com/questions/17734329/system-verilog-parameters-in-generate-block]]></content>
+      <categories>
+        <category>reprint</category>
+      </categories>
+      <tags>
+        <tag>reprint</tag>
+        <tag>verilog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[终于搞懂了回车与换行的区别]]></title>
+    <url>%2F2018%2F03%2F21%2F%E7%BB%88%E4%BA%8E%E6%90%9E%E6%87%82%E4%BA%86%E5%9B%9E%E8%BD%A6%E4%B8%8E%E6%8D%A2%E8%A1%8C%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
+    <content type="text"><![CDATA[转载于：http://www.pythontab.com/html/2017/linuxkaiyuan_0115/1116.html 关于换行和回车其实平时我们不太在意，所以关于两者的区别也不太清楚，在平时开发时可能会遇到一些文件处理的问题，放到不同的操作系统上出现各种坑。那么回车和换行到底有哪些区别呢？今天咱们就来总结一下。 1. 由来在计算机还没有出现之前，有一种叫做电传打字机（Teletype Model 33）的机械打字机，每秒钟可以打10个字符。但是它有一个问题，就是打完一行换行的时候，要用去0.2秒，正好可以打两个字符。要是在这0.2秒里面，又有新的字符传过来，那么这个字符将丢失。 于是，研制人员想了个办法解决这个问题，就是在每行后面加两个表示结束的字符。一个叫做“回车”，告诉打字机把打印头定位在左边界，不卷动滚筒；另一个叫做“换行”，告诉打字机把滚筒卷一格，不改变水平位置。 这就是“换行”和“回车”的由来。 2. 使用后来，计算机发明了，这两个概念也就被般到了计算机上。那时，存储器很贵，一些科学家认为在每行结尾加两个字符太浪费了，加一个就可以。于是，就出现了分歧。 回车 \r 本义是光标重新回到本行开头，r的英文return，控制字符可以写成CR，即Carriage Return 换行 \n 本义是光标往下一行（不一定到下一行行首），n的英文newline，控制字符可以写成LF，即Line Feed 符号 ASCII码 意义 \n 10 换行NL \r 13 回车CR 在不同的操作系统这几个字符表现不同，比如在WIN系统下，这两个字符就是表现的本义，在UNIX类系统，换行\n就表现为光标下一行并回到行首，在MAC上，\r就表现为回到本行开头并往下一行，至于ENTER键的定义是与操作系统有关的。通常用的Enter是两个加起来。 不同操作系统下的含义： \n: UNIX 系统行末结束符\r\n: window 系统行末结束符\r: MAC OS 系统行末结束符 我们经常遇到的一个问题就是，Unix/Mac系统下的文件在Windows里打开的话，所有文字会变成一行；而Windows里的文件在Unix/Mac下打开的话，在每行的结尾可能会多出一个^M符号(dos2Unix urfil)。 3. 软回车和硬回车再扩展一下回车的一些知识。 硬回车就是普通我们按回车产生的，它在换行的同时也起着段落分隔的作用。 软回车是用 Shift + Enter产生的，它换行，但是并不换段，即前后两段文字在 Word 中属于同一“段”。在应用格式时你会体会到这一点。 软回车能使前后两行的行间距大幅度缩小，因为它不是段落标记，要和法定的段落标记——硬回车区别出来。硬回车的html代码是&lt;p&gt;..&lt;/p&gt;，段落的内容就夹在里面，而软回车的代码很精悍：&lt;br&gt;。网页的文字如果复制到word中，则硬回车变为弯曲的箭头，软回车变为向下的箭头。]]></content>
+      <categories>
+        <category>reprint</category>
+      </categories>
+      <tags>
+        <tag>reprint</tag>
+        <tag>linux</tag>
+        <tag>software</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux c — void类型变量和指针]]></title>
+    <url>%2F2018%2F03%2F21%2FLinux-c-%E2%80%94-void%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F%E5%92%8C%E6%8C%87%E9%92%88%2F</url>
+    <content type="text"><![CDATA[1.什么是void？void在英文中形容词的意思就是无效的，空的，空虚的意思，在C语言中就是空类型的意思。在C语言中，使用void这个类型时，有如下规则：12void 只能修饰函数，不能修饰变量void * 函数、变量都可以被修饰 2.void的使用2.1 void修饰变量用void 定义一个a，编译后会报错123void a;//void.c: 在函数‘main’中://void.c:5: 错误：变量或字段‘a’声明为 void 这说明void类型不能修饰一个变量，因为系统无法为a分配一段大小为空的内存 2.2 void修饰函数void修饰函数，就是当函数返回值为空时，使用void类型变量修饰例如我们经常使用的free()函数1void free(void *ptr); free()函数包含在#include 2.3 void * 修饰变量用void *修饰的变量，那么一定就是指针变量，这个指针变量可以接受任何指针类型的地址，并且也可以转换为任何类型的指针。123456int a = 10;double b = 20.22;void *pa = &amp;a;void *pb = &amp;b;printf(&quot;%d\n&quot;, (*(int *)pa));printf(&quot;%f\n&quot;, (*(double *)pb)); 最终打印的结果是121020.220000 这说明，void指针变量，这个指针变量占4个字节，就像是一个通用类型，就类似C++中的模板，但是我们不能直接对一个void类型的指针进行解操作，我们连一个void类型的变量都无法定义，更不用说通过void指针去访问这个void类型变量。这种void类型指针在C语言库函数中极为常见：12void *memset(void *s, int c, size_t n);void free(void *ptr); 函数在进行参数传递时，通过void *类型接收任意类型地址，操作时在转换成所需类型指针进行解操作。 2.4 void *修饰函数void 修饰函数，就是函数的返回值变量为void 类型，它与void修饰变量含义相似，侧重点在于对指针的操作，返回值为void ，接收时转换为我们需要的类型，就可以解操作。例如：123void *calloc(size_t nmemb, size_t size); //申请一段大小为size字节的空间，并且初始化为nmenb，返回这段空间的首地址void *malloc(size_t size);//申请一段大小为size字节的空间，返回这段空间的首地址void *realloc(void *ptr, size_t size);//动态内存调整，将地址为ptr的空间的大小改变为size个字节，并返回新的空间的首地址 使用这三个函数动态分配的空间，最后一定一定要使用free()函数释放该段空间！！ 这三个函数均返回一个void 类型的指针，在我们接收这个动态申请的空间时，我们需要将void 类型转换为需要的类型。12int*pn=(int*)malloc(5*sizeof(int));pn=(int*)realloc(pn,10*sizeof(int)); realloc()函数的原理是，如果在原空间紧接着的空间能满足新空间的大小，则直接在原空间后只见增加空间大小，否则会新生成一个符合大小的新空间，并将原空间的内容复制到新空间上。 版权声明：本文为博主原创文章，未经博主允许不得转载。 http://blog.csdn.net/men_wen/article/details/52565652]]></content>
+      <categories>
+        <category>reprint</category>
+      </categories>
+      <tags>
+        <tag>reprint</tag>
+        <tag>linux</tag>
+        <tag>software</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Shell总结(整理)]]></title>
     <url>%2F2018%2F03%2F15%2FShell%E6%80%BB%E7%BB%93-%E6%95%B4%E7%90%86%2F</url>
     <content type="text"><![CDATA[1. 简介Shell各方面的编程内容总结下来并不断更新，以便以后使用时查询。 2. 详解2.1 Shell输出不换行 实现类echo的简单硬输出，不自动加换行符。 123456#将脚本接收的参数作为一个串($@或$*)处理,并去掉尾部可能存在的换行符(\n） #!/bin/bash echo -n &quot;$*&quot; #方法一：-n参数,输出脚本参数,强制不换行 printf &quot;%s&quot; &quot;$*&quot; #方法二：格式化输出命令printf,格式串无换行 echo &quot;$*&quot; | tr -d &apos;\n&apos; #方法三：转换/删除命令tr,-d删除字符集中的字符 echo &quot;$*&quot; | awk &apos;&#123;printf(&quot;%s&quot;, $0)&#125;&apos; #方法四：模式-命令指令awk 2.2 创建shell脚本库 创建shell脚本库library.sh（里面仅包括各种自定义的函数封装，因非函数引入时会执行）。在其他的脚本中需要使用库中函数时加入语句source ./library.sh，其中./library.sh是库的相对路径。并且source的缩写是”.”，因此等价. ./library.sh。然后就可以按正常方式调用库中的函数了。 2.3 shell特殊变量 $0 ：当前脚本的文件名$num ：num为从1开始的数字，$1是第一个参数，$2是第二个参数，${10}是第十个参数$# ：传入脚本的参数的个数$* ：所有的位置参数(作为单个字符串)$@ ：所有的位置参数(每个都作为独立的字符串)。$? ：当前shell进程中，上一个命令的返回值，如果上一个命令成功执行则$?的值为0，否则为其他非零值，常用做if语句条件$$ ：当前shell进程的pid$! ：后台运行的最后一个进程的pid$- ：显示shell使用的当前选项$_ ：之前命令的最后一个参数 2.4 svn提交代码$svn st | grep &#39;^[AMD]&#39; | cut -c 9- | xargs svn ci -m &quot;commit&quot; 2.5 递归清除.SVN文件find . -name &quot;.svn&quot; | xargs rm -rf 2.6 Shell符号&lt;&lt;&lt; (Here Document)Here Document 是在Linux Shell 中的一种特殊的重定向方式，它的基本的形式如下123cmd &lt;&lt; delimiter Here Document Contentdelimiter 三个小于号的语法：command [args] &lt;&lt;&lt;[“]$word[“]；$word会展开并作为command的stdin。例如：echo “abc123” | cracklib-check等价于cracklib-check &lt;&lt;&lt; “abc123”echo “abc123” | passwd root –stdin等价于passwd root &lt;&lt;&lt; “abc123”注意事项：1234EOF只是一个标识而已,可以替换成任意的合法字符(约定大于配置); 作为结尾的delimiter一定要顶格写,前面不能有任何字符; 作为结尾的delimiter后面也不能有任何的字符(包括空格!!!); 作为起始的delimiter前后的空格会被省略掉; 2.7 Shell比较判断123456789101112131415161718192021222324252627282930313233[ -a FILE ] 如果 FILE 存在则为真。 [ -b FILE ] 如果 FILE 存在且是一个块特殊文件则为真。 [ -c FILE ] 如果 FILE 存在且是一个字特殊文件则为真。 [ -d FILE ] 如果 FILE 存在且是一个目录则为真。 [ -e FILE ] 如果 FILE 存在则为真。 [ -f FILE ] 如果 FILE 存在且是一个普通文件则为真。 [ -g FILE ] 如果 FILE 存在且已经设置了SGID则为真。 [ -h FILE ] 如果 FILE 存在且是一个符号连接则为真。 [ -k FILE ] 如果 FILE 存在且已经设置了粘制位则为真。 [ -p FILE ] 如果 FILE 存在且是一个名字管道(F如果O)则为真。 [ -r FILE ] 如果 FILE 存在且是可读的则为真。 [ -s FILE ] 如果 FILE 存在且大小不为0则为真。 [ -t FD ] 如果文件描述符 FD 打开且指向一个终端则为真。 [ -u FILE ] 如果 FILE 存在且设置了SUID (set user ID)则为真。 [ -w FILE ] 如果 FILE 如果 FILE 存在且是可写的则为真。 [ -x FILE ] 如果 FILE 存在且是可执行的则为真。 [ -O FILE ] 如果 FILE 存在且属有效用户ID则为真。 [ -G FILE ] 如果 FILE 存在且属有效用户组则为真。 [ -L FILE ] 如果 FILE 存在且是一个符号连接则为真。 [ -N FILE ] 如果 FILE 存在 and has been mod如果ied since it was last read则为真。 [ -S FILE ] 如果 FILE 存在且是一个套接字则为真。 [ FILE1 -nt FILE2 ] 如果 FILE1 has been changed more recently than FILE2, or 如果 FILE1 exists and FILE2 does not则为真。 [ FILE1 -ot FILE2 ] 如果 FILE1 比 FILE2 要老, 或者 FILE2 存在且 FILE1 不存在则为真。 [ FILE1 -ef FILE2 ] 如果 FILE1 和 FILE2 指向相同的设备和节点号则为真。 [ -o OPTIONNAME ] 如果 shell选项 “OPTIONNAME” 开启则为真。 [ -z STRING ] “STRING” 的长度为零则为真。 [ -n STRING ] or [ STRING ] “STRING” 的长度为非零 non-zero则为真。 [ STRING1 == STRING2 ] 如果2个字符串相同。 “=” may be used instead of “==” for strict POSIX compliance则为真。 [ STRING1 != STRING2 ] 如果字符串不相等则为真。 [ STRING1 &lt; STRING2 ] 如果 “STRING1” sorts before “STRING2” lexicographically in the current locale则为真。 [ STRING1 &gt; STRING2 ] 如果 “STRING1” sorts after “STRING2” lexicographically in the current locale则为真。 [ ARG1 OP ARG2 ] “OP” is one of -eq, -ne, -lt, -le, -gt or -ge. These arithmetic binary operators return true if “ARG1” is equal to, not equal to, less than, less than or equal to, greater than, or greater than or equal to “ARG2”, respectively. “ARG1” and “ARG2” are integers. if [[ $a != 1 &amp;&amp; $a != 2 ]] 如果是&amp;&amp;、||、&lt;和&gt;，必须使用在[[ ]]条件判断结构中，等价与if [ $a -ne 1] &amp;&amp; [ $a != 2 ]或if [ $a -ne 1 -a $a != 2 ] 1转载自： http://blog.csdn.net/taiyang1987912/article/details/40372789]]></content>
       <categories>
-        <category>transport</category>
+        <category>reprint</category>
       </categories>
       <tags>
         <tag>shell</tag>
-        <tag>transport</tag>
+        <tag>reprint</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[ubuntu-openvpn]]></title>
     <url>%2F2018%2F03%2F14%2Fubuntu-openvpn%2F</url>
-    <content type="text"><![CDATA[First, install the OpenVPN Network Manager plugin: sudo apt-get install network-manager-openvpn Open Network Manager, click “Add” and from the opened window select “Import a saved VPN configuration…” under “Choose a Connection Type”. Navigate to your .ovpn file (~jrg/Documents/vpn-config.ovpn). If it doesn’t automatically find your certificates/keys (the paths of which are found in the .ovpn file), you can select them here, or make any other small changes. One other thing that may save you some headache down the road is to click IPv4 Settings, then change the method to “Automatic (VPN) Addresses Only”. When kept at the default, this will cause ALL internet traffic to go over the VPN, regardless of your .ovpn settings. Here you can also set the DNS server and search domains to use while connected.Must be set DNS server!! transport from https://askubuntu.com/questions/187511/how-can-i-use-a-ovpn-file-with-network-manager]]></content>
+    <content type="text"><![CDATA[First, install the OpenVPN Network Manager plugin: sudo apt-get install network-manager-openvpn Open Network Manager, click “Add” and from the opened window select “Import a saved VPN configuration…” under “Choose a Connection Type”. Navigate to your .ovpn file (~jrg/Documents/vpn-config.ovpn). If it doesn’t automatically find your certificates/keys (the paths of which are found in the .ovpn file), you can select them here, or make any other small changes. One other thing that may save you some headache down the road is to click IPv4 Settings, then change the method to “Automatic (VPN) Addresses Only”. When kept at the default, this will cause ALL internet traffic to go over the VPN, regardless of your .ovpn settings. Here you can also set the DNS server and search domains to use while connected.Must be set DNS server!! 1reprint from https://askubuntu.com/questions/187511/how-can-i-use-a-ovpn-file-with-network-manager]]></content>
       <categories>
         <category>internet</category>
       </categories>
       <tags>
-        <tag>transport</tag>
         <tag>internet</tag>
+        <tag>reprint</tag>
       </tags>
   </entry>
   <entry>
@@ -29,11 +67,11 @@
     <url>%2F2018%2F03%2F13%2Fhexo%E8%BF%81%E7%A7%BB%E9%87%8D%E8%A3%85%2F</url>
     <content type="text"><![CDATA[Hexo属于静态博客，不像WordPress等具有后台系统，可以在任意平台直接使用。而Hexo此类没有统一的后台管理，在换了系统，或者换了电脑，都需要重新安装一下，包括一些配置，如果手动复制迁移，很容易产生错误，因为很多东西不支持直接复制。因此下面记录自己的迁移方式，还是很简单的。 我们一般需要备份或者需要恢复的一般有三部分: source文件夹内的博客原文，以及一些自己新建的页面，比如about页面 themes文件夹下的主题 配置文件: _config.yml 其余部分，每次hexo init都一样，我们没有必要备份。 备份主要方式就是使用一些在线仓库存储。如github, coding(提供私人仓库)。 主题首先是对主题的迁移。我们一般选定了某个主题，一般都会做一点自定义的改变，比如某些css等，这时候可以先fork到自己的github，每次做了修改，直接push到自己的repo上，下次迁移的时候，直接clone自己修改的主题即可。 source文件夹&amp;&amp;配置文件 这个涉及到了一些私人配置文件，例如博客源文件，以及如_config.yml内的涉及到帐号等私人配置，这个时候，需要备份到私人云上，国内的coding.net免费提供了私人repo，可以使用。这样我们就只需在博客的根目录建立一个repo即可，然后提交source文件夹以及_config.yml即可。新写了博客的话，也只需要提交push到repo即可，十分方便。 迁移重装在换了机器或者系统的时候，需要重新安装Hexo,安装好node.js和git之后，只需执行一条命令安装: npm install hexo-cli -g 之后新建一个hexo博客: hexo init blog 下面开始恢复备份: 1. 从github上恢复主题到themes文件夹 2. 从私人repo上克隆source文件夹和_config.yml 3. 安装所需的插件:一般有hexo-deploy-git,hexo-generator-feed等等 之后用hexo g 和hexo s 本地测试，没问题的话，直接hexo d发布 本文链接: http://shomy.top/2017/01/27/hexo-migrate-solution/非商业转载请注明作者及出处。商业转载请联系作者本人。]]></content>
       <categories>
-        <category>transport</category>
+        <category>reprint</category>
       </categories>
       <tags>
-        <tag>transport</tag>
         <tag>hexo</tag>
+        <tag>reprint</tag>
       </tags>
   </entry>
   <entry>
@@ -41,11 +79,11 @@
     <url>%2F2018%2F03%2F12%2FAnaconda%E5%85%A5%E9%97%A8%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%2F</url>
     <content type="text"><![CDATA[打算学习 Python 来做数据分析的你，是不是在开始时就遇到各种麻烦呢？ 到底该装 Python2 呢还是 Python3 ？ 为什么安装 Python 时总是出错？ 怎么安装工具包呢？ 为什么提示说在安装这个工具前必须先安装一堆其他不明所以的工具？ 相信大多数 Python 的初学者们都曾为环境问题而头疼不已，但你并不孤独，大家都是这么折腾过来的。为了在入门时少走弯路，并且让高涨的积极性不至于太受打击，这里推荐使用 Anaconda 来管理你的安装环境和各种工具包。 本文介绍了Anaconda的使用，全文大纲如下： 为什么选择 Anaconda 什么是 Anaconda 什么是 conda Anaconda 的优点 如何安装 Anaconda 如何管理 Python 包 如何管理 Python 环境 添加清华镜像站 一、为什么选择Anaconda？1.1 什么是 Anaconda？Anaconda是专注于数据分析的Python发行版本，包含了conda、Python等190多个科学包及其依赖项。作为好奇宝宝的你是不是发现了一个新名词 conda，那么你一定会问 conda 又是什么呢？ 1.2 什么是 conda ？conda 是开源包（packages）和虚拟环境（environment）的管理系统。 packages 管理： 可以使用 conda 来安装、更新 、卸载工具包 ，并且它更关注于数据科学相关的工具包。在安装 anaconda 时就预先集成了像 Numpy、Scipy、 pandas、Scikit-learn 这些在数据分析中常用的包。另外值得一提的是，conda 并不仅仅管理Python的工具包，它也能安装非python的包。比如在新版的 Anaconda 中就可以安装R语言的集成开发环境 Rstudio。 虚拟环境管理： 在conda中可以建立多个虚拟环境，用于隔离不同项目所需的不同版本的工具包，以防止版本上的冲突。对纠结于 Python 版本的同学们，我们也可以建立 Python2 和 Python3 两个环境，来分别运行不同版本的 Python 代码。 知道是什么（what） 的同时，我们也需要问一问 为什么（why）。那么，为什么要选择用Anaconda呢？ 1.3 Anaconda 的优点？Anaconda的优点总结起来就八个字：省时省心、分析利器。 * 省时省心： Anaconda通过管理工具包、开发环境、Python版本，大大简化了你的工作流程。不仅可以方便地安装、更新、卸载工具包，而且安装时能自动安装相应的依赖包，同时还能使用不同的虚拟环境隔离不同要求的项目。 * 分析利器： 在 [Anaconda](https://www.anaconda.com/what-is-anaconda/) 官网中是这么宣传自己的：适用于企业级大数据分析的Python工具。其包含了720多个数据科学相关的开源包，在数据可视化、机器学习、深度学习等多方面都有涉及。不仅可以做数据分析，甚至可以用在大数据和人工智能领域。 解决了 是什么 以及 为什么 的问题后，下面让我们看一下 怎么做（How）。 二、如何安装Anaconda？可以从这里 下载 Anaconda 的安装程序以及查看安装说明。无论是 Windows、Linux 还是 MAC 的 OSX 系统，都可以找到对应的安装软件。如果你的电脑是64位则尽量选64位版本。至于 Python 的版本是 2.7 还是 3.x，这里推荐你使用 Python3，因为 Python2 终将停止维护。可能目前市面上大多数教程使用的都还是 Python2，这也不用着急，因为在 Anaconda 中可以同时管理两个 Python 版本的环境。 根据提示进行安装，完成后你大概会惊讶地发现电脑中多了好多应用，不用担心，我们一项项来看： Anaconda Navigator ：用于管理工具包和环境的图形用户界面，后续涉及的众多管理命令也可以在 Navigator 中手工实现。 Jupyter notebook ：基于web的交互式计算环境，可以编辑易于人们阅读的文档，用于展示数据分析的过程。 qtconsole ：一个可执行 IPython 的仿终端图形界面程序，相比 Python Shell 界面，qtconsole 可以直接显示代码生成的图形，实现多行代码输入执行，以及内置许多有用的功能和函数。 spyder ：一个使用Python语言、跨平台的、科学运算集成开发环境。 安装完成后，我们还需要对所有工具包进行升级，以避免可能发生的错误。打开你电脑的终端，在命令行中输入： conda upgrade --all 在终端询问是否安装如下升级版本时，输入 y。 有的情况下，你可能会遇到找不到 conda 命令的错误提示，这很可能是环境路径设置的问题，需要添加conda环境变量：export PATH=xxx/anaconda/bin:$PATH (tcsh: setenv PATH &quot;xxx/anaconda2/bin:$PATH&quot;), 其中xxx替换成anaconda的安装路径。 至此，安装完成，下面让我们看一下如何用 Anaconda 管理工具包和环境。 三、如何管理Python包？安装一个 package： conda install package_name 这里 package_name 是需要安装包的名称。你也可以同时安装多个包，比如同时安装numpy 、scipy 和 pandas，则执行如下命令： conda install numpy scipy pandas 你也可以指定安装的版本，比如安装 1.1 版本的 numpy ： conda install numpy=1.10 移除一个 package： conda remove package_name 升级 package 版本： conda update package_name 查看所有的 packages： conda list 如果你记不清 package 的具体名称，也可以进行模糊查询： conda search search_term 四、如何管理Python环境？默认的环境是 root，你也可以创建一个新环境： conda create -n env_name list of packages 其中 -n 代表 name，env_name 是需要创建的环境名称，list of packages 则是列出在新环境中需要安装的工具包。 例如，当我安装了 Python3 版本的 Anaconda 后，默认的 root 环境自然是 Python3，但是我还需要创建一个 Python 2 的环境来运行旧版本的 Python 代码，最好还安装了 pandas 包，于是我们运行以下命令来创建： conda create -n py2 python=2.7 pandas 细心的你一定会发现，py2 环境中不仅安装了 pandas，还安装了 numpy 等一系列 packages，这就是使用 conda 的方便之处，它会自动为你安装相应的依赖包，而不需要你一个个手动安装。 进入名为 env_name 的环境： source activate env_name 退出当前环境： source deactivate 另外注意，在 Windows 系统中，使用 activate env_name 和 deactivate 来进入和退出某个环境。 (tcsh 不支持 activate 和 deactivate, 可以在anaconda-navigate里面切换env_name) 删除名为 env_name 的环境： conda env remove -n env_name 显示所有的环境： conda env list 当分享代码的时候，同时也需要将运行环境分享给大家，执行如下命令可以将当前环境下的 package 信息存入名为 environment 的 YAML 文件中。 conda env export &gt; environment.yaml 同样，当执行他人的代码时，也需要配置相应的环境。这时你可以用对方分享的 YAML 文件来创建一摸一样的运行环境。 conda env create -f environment.yaml 至此，你已跨入 Anaconda 的大门，后续就可以徜徉在 Python 的海洋中了。 五、添加清华镜像站Anaconda 安装包可以到 https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/ 下载。 TUNA 还提供了 Anaconda 仓库的镜像，运行以下命令: conda config –add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/conda config –add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/conda config –set show_channel_urls yes 即可添加 Anaconda Python 免费仓库。 运行 conda install numpy 测试一下吧。 祝学习愉快！ 注：本文代码示例参考自Udacity数据分析课程之Anaconda章节。 如果你想Python写出风格优美的文章，请参考左手程序员，右手作家：你必须会的Jupyter Notebook 如果你想用Python做一些数据分析，但不知道怎么开始，请参考系列文章Python数据分析的起手式 作者：鱼心DrFish链接：https://www.jianshu.com/p/169403f7e40c來源：简书著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。]]></content>
       <categories>
-        <category>transport</category>
+        <category>reprint</category>
       </categories>
       <tags>
-        <tag>transport</tag>
         <tag>python</tag>
+        <tag>reprint</tag>
       </tags>
   </entry>
   <entry>

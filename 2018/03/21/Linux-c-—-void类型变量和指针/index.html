@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="hexo,reprint," />
+  <meta name="keywords" content="reprint,linux,software," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Hexo属于静态博客，不像WordPress等具有后台系统，可以在任意平台直接使用。而Hexo此类没有统一的后台管理，在换了系统，或者换了电脑，都需要重新安装一下，包括一些配置，如果手动复制迁移，很容易产生错误，因为很多东西不支持直接复制。因此下面记录自己的迁移方式，还是很简单的。  我们一般需要备份或者需要恢复的一般有三部分:  source文件夹内的博客原文，以及一些自己新建的页面，比如ab">
-<meta name="keywords" content="hexo,reprint">
+<meta name="description" content="1.什么是void？void在英文中形容词的意思就是无效的，空的，空虚的意思，在C语言中就是空类型的意思。">
+<meta name="keywords" content="reprint,linux,software">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo迁移重装 ">
-<meta property="og:url" content="http://yoursite.com/2018/03/13/hexo迁移重装/index.html">
+<meta property="og:title" content="Linux c — void类型变量和指针">
+<meta property="og:url" content="http://yoursite.com/2018/03/21/Linux-c-—-void类型变量和指针/index.html">
 <meta property="og:site_name" content="淡泊明志，宁静致远">
-<meta property="og:description" content="Hexo属于静态博客，不像WordPress等具有后台系统，可以在任意平台直接使用。而Hexo此类没有统一的后台管理，在换了系统，或者换了电脑，都需要重新安装一下，包括一些配置，如果手动复制迁移，很容易产生错误，因为很多东西不支持直接复制。因此下面记录自己的迁移方式，还是很简单的。  我们一般需要备份或者需要恢复的一般有三部分:  source文件夹内的博客原文，以及一些自己新建的页面，比如ab">
+<meta property="og:description" content="1.什么是void？void在英文中形容词的意思就是无效的，空的，空虚的意思，在C语言中就是空类型的意思。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-21T14:32:12.819Z">
+<meta property="og:updated_time" content="2018-03-21T14:37:10.451Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo迁移重装 ">
-<meta name="twitter:description" content="Hexo属于静态博客，不像WordPress等具有后台系统，可以在任意平台直接使用。而Hexo此类没有统一的后台管理，在换了系统，或者换了电脑，都需要重新安装一下，包括一些配置，如果手动复制迁移，很容易产生错误，因为很多东西不支持直接复制。因此下面记录自己的迁移方式，还是很简单的。  我们一般需要备份或者需要恢复的一般有三部分:  source文件夹内的博客原文，以及一些自己新建的页面，比如ab">
+<meta name="twitter:title" content="Linux c — void类型变量和指针">
+<meta name="twitter:description" content="1.什么是void？void在英文中形容词的意思就是无效的，空的，空虚的意思，在C语言中就是空类型的意思。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/13/hexo迁移重装/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/21/Linux-c-—-void类型变量和指针/"/>
 
 
 
 
 
-  <title>hexo迁移重装  | 淡泊明志，宁静致远</title>
+  <title>Linux c — void类型变量和指针 | 淡泊明志，宁静致远</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/13/hexo迁移重装/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/21/Linux-c-—-void类型变量和指针/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hexo迁移重装 </h1>
+          <h1 class="post-title" itemprop="name headline">Linux c — void类型变量和指针</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-13T22:38:00+08:00">
-                2018-03-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-21T22:10:05+08:00">
+                2018-03-21
               </time>
             
 
@@ -327,8 +327,6 @@
           
 
           
-            
-          
 
           
           
@@ -352,35 +350,21 @@
       
 
       
-        <blockquote>
-<p>Hexo属于静态博客，不像WordPress等具有后台系统，可以在任意平台直接使用。而Hexo此类没有统一的后台管理，在换了系统，或者换了电脑，都需要重新安装一下，包括一些配置，如果手动复制迁移，很容易产生错误，因为很多东西不支持直接复制。因此下面记录自己的迁移方式，还是很简单的。</p>
-</blockquote>
-<p>我们一般需要备份或者需要恢复的一般有三部分:</p>
-<ul>
-<li>source文件夹内的博客原文，以及一些自己新建的页面，比如about页面</li>
-<li>themes文件夹下的主题</li>
-<li>配置文件: _config.yml</li>
-</ul>
-<p>其余部分，每次hexo init都一样，我们没有必要备份。<br><a id="more"></a></p>
-<h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><p>主要方式就是使用一些在线仓库存储。如github, coding(提供私人仓库)。</p>
-<h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><p>首先是对主题的迁移。我们一般选定了某个主题，一般都会做一点自定义的改变，比如某些css等，这时候可以先fork到自己的github，每次做了修改，直接push到自己的repo上，下次迁移的时候，直接clone自己修改的主题即可。</p>
-<p><strong>source文件夹&amp;&amp;配置文件</strong></p>
-<p>这个涉及到了一些私人配置文件，例如博客源文件，以及如<code>_config.yml</code>内的涉及到帐号等私人配置，这个时候，需要备份到私人云上，国内的coding.net免费提供了私人repo，可以使用。这样我们就只需在博客的根目录建立一个repo即可，然后提交<code>source</code>文件夹以及<code>_config.yml</code>即可。新写了博客的话，也只需要提交push到repo即可，十分方便。</p>
-<h2 id="迁移重装"><a href="#迁移重装" class="headerlink" title="迁移重装"></a>迁移重装</h2><p>在换了机器或者系统的时候，需要重新安装<code>Hexo</code>,安装好<code>node.js</code>和<code>git</code>之后，只需执行一条命令安装:</p>
+        <h2 id="1-什么是void？"><a href="#1-什么是void？" class="headerlink" title="1.什么是void？"></a>1.什么是void？</h2><p>void在英文中形容词的意思就是无效的，空的，空虚的意思，在C语言中就是空类型的意思。<br><a id="more"></a><br>在C语言中，使用void这个类型时，有如下规则：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">void 只能修饰函数，不能修饰变量</span><br><span class="line">void * 函数、变量都可以被修饰</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-void的使用"><a href="#2-void的使用" class="headerlink" title="2.void的使用"></a>2.void的使用</h2><h3 id="2-1-void修饰变量"><a href="#2-1-void修饰变量" class="headerlink" title="2.1 void修饰变量"></a>2.1 void修饰变量</h3><p>用void 定义一个a，编译后会报错<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void a;</span><br><span class="line">//void.c: 在函数‘main’中:</span><br><span class="line">//void.c:5: 错误：变量或字段‘a’声明为 void</span><br></pre></td></tr></table></figure></p>
+<p>这说明void类型不能修饰一个变量，因为系统无法为a分配一段大小为空的内存</p>
+<h3 id="2-2-void修饰函数"><a href="#2-2-void修饰函数" class="headerlink" title="2.2 void修饰函数"></a>2.2 void修饰函数</h3><p>void修饰函数，就是当函数返回值为空时，使用void类型变量修饰<br>例如我们经常使用的free()函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void free(void *ptr);</span><br></pre></td></tr></table></figure></p>
+<p>free()函数包含在#include</p>
+<h3 id="2-3-void-修饰变量"><a href="#2-3-void-修饰变量" class="headerlink" title="2.3 void * 修饰变量"></a>2.3 void * 修饰变量</h3><p>用void *修饰的变量，那么一定就是指针变量，这个指针变量可以接受任何指针类型的地址，并且也可以转换为任何类型的指针。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int a = 10;</span><br><span class="line">double b = 20.22;</span><br><span class="line">void *pa = &amp;a;</span><br><span class="line">void *pb = &amp;b;</span><br><span class="line">printf(&quot;%d\n&quot;, (*(int *)pa));</span><br><span class="line">printf(&quot;%f\n&quot;, (*(double *)pb));</span><br></pre></td></tr></table></figure></p>
+<p>最终打印的结果是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">10</span><br><span class="line">20.220000</span><br></pre></td></tr></table></figure></p>
+<p>这说明，void<em>指针变量，这个指针变量占4个字节，就像是一个通用类型，就类似C++中的模板，但是我们不能直接对一个void</em>类型的指针进行解操作，我们连一个void类型的变量都无法定义，更不用说通过void<em>指针去访问这个void类型变量。<br>这种void</em>类型指针在C语言库函数中极为常见：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">void *memset(void *s, int c, size_t n);</span><br><span class="line">void free(void *ptr);</span><br></pre></td></tr></table></figure></p>
+<p>函数在进行参数传递时，通过void *类型接收任意类型地址，操作时在转换成所需类型指针进行解操作。</p>
+<h3 id="2-4-void-修饰函数"><a href="#2-4-void-修饰函数" class="headerlink" title="2.4 void *修饰函数"></a>2.4 void *修饰函数</h3><p>void 修饰函数，就是函数的返回值变量为void 类型，它与void<em>修饰变量含义相似，侧重点在于对指针的操作，返回值为void </em>，接收时转换为我们需要的类型，就可以解操作。<br>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void *calloc(size_t nmemb, size_t size); //申请一段大小为size字节的空间，并且初始化为nmenb，返回这段空间的首地址</span><br><span class="line">void *malloc(size_t size);//申请一段大小为size字节的空间，返回这段空间的首地址</span><br><span class="line">void *realloc(void *ptr, size_t size);//动态内存调整，将地址为ptr的空间的大小改变为size个字节，并返回新的空间的首地址</span><br></pre></td></tr></table></figure></p>
+<p>使用这三个函数动态分配的空间，最后一定一定要使用free()函数释放该段空间！！</p>
+<p>这三个函数均返回一个void <em>类型的指针，在我们接收这个动态申请的空间时，<br>我们需要将void </em>类型转换为需要的类型。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int*pn=(int*)malloc(5*sizeof(int));</span><br><span class="line">pn=(int*)realloc(pn,10*sizeof(int));</span><br></pre></td></tr></table></figure></p>
+<p>realloc()函数的原理是，如果在原空间紧接着的空间能满足新空间的大小，则直接在原空间后只见增加空间大小，否则会新生成一个符合大小的新空间，并将原空间的内容复制到新空间上。</p>
 <blockquote>
-<p>npm install hexo-cli -g</p>
-</blockquote>
-<p>之后新建一个hexo博客:</p>
-<blockquote>
-<p>hexo init blog</p>
-</blockquote>
-<p>下面开始恢复备份:</p>
-<pre><code>1. 从github上恢复主题到themes文件夹
-2. 从私人repo上克隆source文件夹和_config.yml
-3. 安装所需的插件:一般有hexo-deploy-git,hexo-generator-feed等等
-</code></pre><p>之后用<code>hexo g</code> 和<code>hexo s</code> 本地测试，没问题的话，直接<code>hexo d</code>发布</p>
-<blockquote>
-<p>本文链接: <a href="http://shomy.top/2017/01/27/hexo-migrate-solution/" target="_blank" rel="noopener">http://shomy.top/2017/01/27/hexo-migrate-solution/</a><br>非商业转载请注明作者及出处。商业转载请联系作者本人。</p>
+<p>版权声明：本文为博主原创文章，未经博主允许不得转载。 <a href="http://blog.csdn.net/men_wen/article/details/52565652" target="_blank" rel="noopener">http://blog.csdn.net/men_wen/article/details/52565652</a> </p>
 </blockquote>
 
       
@@ -399,9 +383,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
-          
             <a href="/tags/reprint/" rel="tag"># reprint</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/software/" rel="tag"># software</a>
           
         </div>
       
@@ -414,8 +400,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/12/Anaconda入门使用指南/" rel="next" title="Anaconda入门使用指南">
-                <i class="fa fa-chevron-left"></i> Anaconda入门使用指南
+              <a href="/2018/03/15/Shell总结-整理/" rel="next" title="Shell总结(整理)">
+                <i class="fa fa-chevron-left"></i> Shell总结(整理)
               </a>
             
           </div>
@@ -424,8 +410,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/14/ubuntu-openvpn/" rel="prev" title="ubuntu-openvpn">
-                ubuntu-openvpn <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/21/终于搞懂了回车与换行的区别/" rel="prev" title="终于搞懂了回车与换行的区别">
+                终于搞懂了回车与换行的区别 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -454,10 +440,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -562,7 +544,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#备份"><span class="nav-number">1.</span> <span class="nav-text">备份</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主题"><span class="nav-number">2.</span> <span class="nav-text">主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迁移重装"><span class="nav-number">3.</span> <span class="nav-text">迁移重装</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是void？"><span class="nav-number">1.</span> <span class="nav-text">1.什么是void？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-void的使用"><span class="nav-number">2.</span> <span class="nav-text">2.void的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-void修饰变量"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 void修饰变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-void修饰函数"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 void修饰函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-void-修饰变量"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 void * 修饰变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-void-修饰函数"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 void *修饰函数</span></a></li></ol></li></ol></div>
             
 
           </div>
